@@ -132,7 +132,7 @@ $(function() {
                                 location.href = './bindsucc.html?studentId=' + res.data.studentId;
                             } else if(res.code == 1001) {
                                 // donot login
-                                location.href = CONFIG.redirect_url;
+                                location.href = CONFIG.bind_redirect_url;
                             } else {
                                 // error
                                 that.showMsg(res.errorInfo);

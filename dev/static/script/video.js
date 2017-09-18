@@ -17,11 +17,10 @@ $(function() {
             that.selectTime = new Date();
 
             // 以当前日期初始化日历
-            // that.calendarInit(that.time);
+            that.calendarInit(that.time);
 
-            // var date = that.getDate(new Date());
-            // that.getVideoList(date.cy +'-'+ date.cm +'-'+ date.cd);
-            that.handleBind();
+            var date = that.getDate(new Date());
+            that.getVideoList(date.cy +'-'+ date.cm +'-'+ date.cd);
         },
 
         // 初始化日历
@@ -93,7 +92,7 @@ $(function() {
                                 if(cDate.cd == j + 1 && date.cy == cDate.cy && date.cm == cDate.cm) {
                                     tmp += '<p class="date-item"><span class="current" data-date="'+ date.cy +'-'+ date.cm +'-'+ (j + 1) +'">'+ (j + 1) +'</span></p>';
                                 } else {
-                                    if(hasDataArr.indexOf((j + 1)) > -1) {
+                                    if(hasDataArr.indexOf((j + 1).toString()) > -1) {
                                         tmp += '<p class="date-item"><span data-date="'+ date.cy +'-'+ date.cm +'-'+ (j + 1) +'">'+ (j + 1) +'</span></p>';
                                     } else {
                                         tmp += '<p class="date-item"><span data-date="'+ date.cy +'-'+ date.cm +'-'+ (j + 1) +'" class="disable">'+ (j + 1) +'</span></p>';
@@ -107,7 +106,7 @@ $(function() {
                         that.handleBind();
                     } else if(res.code == 1001) {
                         // donot login
-                        location.href = CONFIG.redirect_url;
+                        location.href = CONFIG.courseRecord_redirect_url;
                     } else {
                         // error
                         cBodyDate.html('<div class="loading">'+ res.errorInfo +'</div>');
@@ -229,7 +228,7 @@ $(function() {
                         videoList.html(temp);
                     } else if(res.code == 1001) {
                         // donot login
-                        location.href = CONFIG.redirect_url;
+                        location.href = CONFIG.courseRecord_redirect_url;
                     } else {
                         // error
                         videoList.html('<div class="loading">'+ res.errorInfo +'</div>');
