@@ -1,0 +1,24 @@
+@mixin backgroundImage($url, $repeat, $posx, $posy, $sizex, $sizey){
+	background-image: url($url);
+	background-repeat: $repeat;
+	background-position: $posx $posy;
+	background-size: $sizex $sizey;
+}
+
+
+@mixin imageGrey($g){
+	-webkit-filter: grayscale($g);
+	   -moz-filter: grayscale($g);
+	    -ms-filter: grayscale($g);
+	     -o-filter: grayscale($g);
+			filter: grayscale($g);
+			filter: gray;
+}
+
+@mixin boxShadow($h, $v, $blur, $color){
+	-webkit-box-shadow: $h $v $blur $color;
+	   -moz-box-shadow: $h $v $blur $color;
+		-ms-box-shadow: $h $v $blur $color;
+		 -o-box-shadow: $h $v $blur $color;
+			box-shadow: $h $v $blur $color;
+}

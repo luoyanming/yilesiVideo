@@ -1,0 +1,75 @@
+@mixin translate($x, $y, $z){
+	-webkit-transform: translate3d($x, $y, $z);
+	   -moz-transform: translate3d($x, $y, $z);
+		-ms-transform: translate3d($x, $y, $z);
+			transform: translate3d($x, $y, $z);
+}
+
+@mixin rotate($deg){
+	-webkit-transform: rotate($deg);
+	   -moz-transform: rotate($deg);
+		-ms-transform: rotate($deg);
+			transform: rotate($deg);
+}
+
+@mixin scale($zoom){
+	-webkit-transform: scale($zoom);
+	   -moz-transform: scale($zoom);
+		-ms-transform: scale($zoom);
+			transform: scale($zoom);
+}
+
+@mixin rotateY($deg){
+	-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+	-webkit-transform: perspective(1000px) rotateY($deg);
+			transform: perspective(1000px) rotateY($deg);
+}
+
+@mixin transition($prop, $dur, $easing, $delay){
+	@if $prop = transform {
+		@if $delay == 0 {
+			-webkit-transition: $prop $dur $easing;
+			   -moz-transition: $prop $dur $easing;
+				-ms-transition: $prop $dur $easing;
+					transition: $prop $dur $easing;
+		} @else {
+			-webkit-transition: $prop $dur $easing $delay;
+			   -moz-transition: $prop $dur $easing $delay;
+				-ms-transition: $prop $dur $easing $delay;
+					transition: $prop $dur $easing $delay;
+		}
+	} @else {
+		@if $delay == 0 {
+			-webkit-transition: -webkit-transform $dur $easing;
+			   -moz-transition:    -moz-transform $dur $easing;
+				-ms-transition:     -ms-transform $dur $easing;
+					transition: 		transform $dur $easing;
+		} @else {
+			-webkit-transition: -webkit-transform $dur $easing $delay;
+			   -moz-transition:    -moz-transform $dur $easing $delay;
+				-ms-transition:     -ms-transform $dur $easing $delay;
+					transition: 		transform $dur $easing $delay;
+		}
+	}
+	
+}
+
+
+@mixin transitionTransform($prop, $dur, $easing, $delay) {
+	@if $delay == 0 {
+		-webkit-transition: $prop $dur $easing, -webkit-transform $dur $easing;
+		   -moz-transition: $prop $dur $easing,    -moz-transform $dur $easing;
+			-ms-transition: $prop $dur $easing,     -ms-transform $dur $easing;
+				transition: $prop $dur $easing, 		transform $dur $easing;
+	} @else {
+		-webkit-transition: $prop $dur $easing $delay, -webkit-transform $dur $easing $delay;
+		   -moz-transition: $prop $dur $easing $delay,    -moz-transform $dur $easing $delay;
+			-ms-transition: $prop $dur $easing $delay,     -ms-transform $dur $easing $delay;
+				transition: $prop $dur $easing $delay, 		   transform $dur $easing $delay;
+	}
+	
+}
+
+
+

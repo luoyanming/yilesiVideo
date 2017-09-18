@@ -1,0 +1,22 @@
+{
+	"name": "yilesivideo",
+	"version": "1.0.0",
+	"description": "",
+	"homepage": "",
+	"author": {
+		"name": "luoym",
+		"email": "13575458746@163.com"
+	},
+	"license": "ISC",
+	"devDependencies": {
+		"gulp": "^3.9.1",
+		"gulp-clean-css": "^2.4.0",
+		"gulp-connect": "^5.0.0",
+		"gulp-header": "^1.8.9",
+		"gulp-livereload": "^3.8.1",
+		"gulp-notify": "^3.0.0",
+		"gulp-plumber": "^1.1.0",
+		"gulp-sass": "^3.1.0",
+		"gulp-uglify": "^2.1.2"
+	}
+}

@@ -1,0 +1,6 @@
+@mixin gradient($position, $startColor, $endColor){
+	background: -webkit-linear-gradient($position, $startColor, $endColor);
+	background:    -moz-linear-gradient($position, $startColor, $endColor);
+	background:      -o-linear-gradient($position, $startColor, $endColor);
+	background: 		linear-gradient($position, $startColor, $endColor);
+}

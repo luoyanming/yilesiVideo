@@ -1,0 +1,460 @@
+@import "base/reset";
+
+
+// ================================================================================================================
+// ***********************
+// ** video
+// ***********************
+// ================================================================================================================
+.video{
+    position: relative;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .calendar{
+        .calendar-header{
+            background: #fff;
+            font-size: 0;
+            text-align: center;
+
+            .block-center{
+                display: inline-block;
+                padding: .3rem 0;
+
+                .date{
+                    float: left;
+                    padding: 0 .5rem;
+                    font-size: .65rem;
+                    color: #000;
+                    line-height: 1rem;
+                }
+
+                .button-arrow{
+                    float: left;
+                    width: 1rem;
+                    height: 1rem;
+
+                    &.button-prev{
+                        @include backgroundImage('../images/icon-arrow-left-able.png', no-repeat, center, center, 100%, 100%);
+
+                        &.disable{
+                            @include backgroundImage('../images/icon-arrow-left-disable.png', no-repeat, center, center, 100%, 100%);
+                        }
+                    }
+
+                    &.button-next{
+                        @include backgroundImage('../images/icon-arrow-right-able.png', no-repeat, center, center, 100%, 100%);
+
+                        &.disable{
+                            @include backgroundImage('../images/icon-arrow-right-disable.png', no-repeat, center, center, 100%, 100%);
+                        }
+                    }
+                }
+            }
+        }
+
+        .calendar-body{
+
+            .calendar-week{
+                padding: 0 1%;
+                background: #EFEFF4;
+
+                p{
+                    float: left;
+                    width: 14%;
+                    font-size: .5rem;
+                    color: #7F8388;
+                    line-height: 1.15rem;
+                    text-align: center;
+                }
+            }
+            
+            .calendar-date{
+                padding: .35rem 1%;
+                background: #fff;
+
+                .loading{
+                    font-size: .65rem;
+                    color: #7F8388;
+                    line-height: 2;
+                    text-align: center;
+                }
+
+                .date-item{
+                    float: left;
+                    width: 14%;
+                    padding: .15rem 0;
+
+                    span{
+                        display: block;
+                        margin: 0 auto;
+                        width: 1.35rem;
+                        height: 1.35rem;
+                        font-size: .85rem;
+                        color: #000;
+                        line-height: 1.35rem;
+                        text-align: center;
+                        border-radius: .3rem;
+                        @include transition(all, .3s, ease-in-out, 0);
+
+                        &.current{
+                            color: #fff;
+                            background: #20B681;
+                            @include transition(all, .3s, ease-in-out, 0);
+                        }
+
+                        &.disable{
+                            color: #7F8388;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .video-list{
+        margin: 1rem 0;
+
+        .loading{
+            font-size: .65rem;
+            color: #7F8388;
+            line-height: 2;
+            text-align: center;
+        }
+
+        .nodata{
+            margin: 3.75rem;
+            padding-top: 7.35rem;
+            font-size: .65rem;
+            color: #7F8388;
+            line-height: 1.05rem;
+            text-align: center;
+            @include backgroundImage('../images/icon-nodata.png', no-repeat, center, top, auto, 6.75rem);
+        }
+
+        .list-item{
+            background: #FFFFFF;
+            border-bottom: 1px solid #CECED2;
+
+            &:first-child{
+                border-top: 1px solid #CECED2;
+            }
+
+            a{
+                height: 4rem;
+                overflow: hidden;
+
+                .thumb{
+                    width: 3.5rem;
+                    height: 2.6rem;
+                    margin: .7rem .7rem .7rem .85rem;
+                    overflow: hidden;
+                    background: #f1f1f1;
+
+                    img{
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .info{
+                    .name{
+                        margin-top: 1.05rem;
+                        font-size: .85rem;
+                        color: #000000;
+                        line-height: 1.05;
+                        overflow: hidden;
+                        height: .85rem;
+                    }
+
+                    .desc{
+                        margin-top: .4rem;
+                        font-size: .65rem;
+                        color: #7F8388;
+                        line-height: 1;
+
+                        .time{
+                            padding-left: .7rem;
+                            @include backgroundImage('../images/icon-time.png', no-repeat, left, center, .5rem, .5rem);
+                        }
+
+                        .class{
+                            margin-left: .5rem;
+                        }
+                    }
+                }
+
+                .arrow{
+                    margin-right: 1.1rem;
+                    width: .4rem;
+                    @include backgroundImage('../images/icon-arrow.png', no-repeat, center, center, 100%, auto);
+                }
+            }
+        }
+    }
+}
+
+.playercontainer{
+    width: 100%;
+    height: 100%;
+
+    .jw-icon-barlogo-new{
+        display: none !important;
+    }
+}
+
+
+
+// ================================================================================================================
+// ***********************
+// ** student-list
+// ***********************
+// ================================================================================================================
+.student-list{
+    position: relative;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .loading{
+        font-size: .65rem;
+        color: #7F8388;
+        line-height: 4;
+        text-align: center;
+    }
+
+    .list-item{
+        background: #FFFFFF;
+        border-bottom: 1px solid #CECED2;
+
+        a{
+
+            .name{
+                margin-left: .9rem;
+                font-size: .85rem;
+                color: #000;
+                line-height: 2.2rem;
+            }
+
+            .arrow{
+                margin-right: 1.1rem;
+                width: .4rem;
+                @include backgroundImage('../images/icon-arrow.png', no-repeat, center, center, 100%, auto);
+            }
+        }
+    }
+}
+
+
+
+// ================================================================================================================
+// ***********************
+// ** bindsucc
+// ***********************
+// ================================================================================================================
+.bindcard{
+    position: relative;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .form{
+        padding: 1rem 0;
+
+        .block-content{
+            position: relative;
+            background: #fff;
+            border-bottom: 1px solid #CECED2;
+
+            &:nth-of-type(1){
+                border-top: 1px solid #CECED2;
+            }
+
+            &:nth-of-type(2){
+                &:after{
+                    content: "";
+                    @include position(absolute, 3, 0, 1.2rem, 0, none);
+                    width: .4rem;
+                    @include backgroundImage('../images/icon-arrow.png', no-repeat, center, center, 100%, auto);
+                }
+            }
+
+            .title-name{
+                padding: 0 1.65rem 0 .9rem;
+
+                label{
+                    font-size: .85rem;
+                    color: #000;
+                    line-height: 2.2rem;
+                    letter-spacing: .32px;
+                }
+            }
+
+            .text{
+                position: relative;
+                padding-right: 2rem;
+                overflow: hidden;
+
+                input{
+                    width: 100%;
+                    font-size: .85rem;
+                    color: #000;
+                    line-height: 2.2rem;
+                    letter-spacing: .2px;
+                }
+
+                .input-picker{
+                    @include position(absolute, 5, 0, 0, 0, 0);
+                    opacity: 0;
+                }
+            }
+        }
+
+        .button-submit{
+            display: block;
+            margin: 1.6rem auto 0;
+            width: 80%;
+            height: 2.2rem;
+            font-size: .85rem;
+            color: #fff;
+            line-height: 2.2rem;
+            text-align: center;
+            background: #20B681;
+            border-radius: .3rem;
+            @include transition(all, .3s, ease-in-out, 0);
+
+            &:hover,
+            &:active{
+                opacity: .8;
+                @include transition(all, .3s, ease-in-out, 0);
+            }
+        }
+    }
+}
+
+
+
+.picker-modal{
+    background: #fff;
+}
+.picker-item{
+    font-size: 1rem;
+    padding: 0 1.35rem !important;
+}
+
+
+
+// ================================================================================================================
+// ***********************
+// ** msg mask
+// ***********************
+// ================================================================================================================
+.msg-mask{
+    @include position(absolute, 40, 0, 0, 0, 0);
+    background: rgba(0,0,0,0.70);
+    display: none;
+
+    .msg-box{
+        @include position(absolute, 41, 50%, none, none, 50%);
+        @include translate(-50%, -50%, 0);
+        width: 90%;
+        padding: 1rem 1rem 1rem .6rem;
+        border-radius: .4rem;
+        background: #fff;
+
+        h3{
+            font-size: .75rem;
+            line-height: 1;
+            color: #000;
+        }
+
+        .text{
+            margin-top: .4rem;
+            font-size: .75rem;
+            color: #7F8388;
+            line-height: 1.05rem;
+        }
+
+        .button-ensure{
+            float: right;
+            margin-top: .5rem;
+            font-size: .65rem;
+            color: #20B681;
+            line-height: 1.2rem;
+
+            &:hover,
+            &:active{
+                opacity: .7;
+            }
+        }
+    }
+}
+
+
+// ================================================================================================================
+// ***********************
+// ** bindsucc
+// ***********************
+// ================================================================================================================
+.bindsucc{
+    position: relative;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .text{
+        margin-top: 2.5rem;
+        padding-top: 5.7rem;
+        font-size: 1rem;
+        color: #000;
+        line-height: 1.4;
+        text-align: center;
+        @include backgroundImage('../images/icon-succ.png', no-repeat, center, top, auto, 4.7rem);
+    }
+
+    .tips{
+        width: 96%;
+        margin: .5rem auto 0;
+        font-size: .65rem;
+        color: #7F8388;
+        line-height: 1.05rem;
+        text-align: center;
+    }
+
+    .button-link{
+        display: block;
+        margin: 1.6rem auto 2.5rem;
+        width: 80%;
+        font-size: .85rem;
+        color: #20B681;
+        line-height: 2.2rem;
+        text-align: center;
+        border: 1px solid #20B681;
+        border-radius: .3rem;
+        @include transition(all, .3s, ease-in-out, 0);
+
+        &:hover,
+        &:active{
+            color: #fff;
+            background: #20B681;
+            @include transition(all, .3s, ease-in-out, 0);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
