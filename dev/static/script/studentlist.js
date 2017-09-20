@@ -5,7 +5,7 @@ $(function() {
         },
 
         getList: function() {
-            var studentList = $('#student-list');
+            var studentList = $('.student-list');
 
             studentList.html('<div class="loading">正在努力加载...</div>');
 

@@ -217,7 +217,7 @@ $(function() {
                             temp += '<p class="name">'+ list[i].courseName +'</p>';
                             temp += '<p class="desc">';
                             temp += '<span class="time">'+ list[i].videoLength +'</span>';
-                            temp += '<span class="class">'+ list[i].className +'</span>';
+                            temp += '<span class="class">'+ list[i].teacherName +'</span>';
                             temp += '</p>';
                             temp += '</div>';
                             temp += '<div class="arrow"></div>';
