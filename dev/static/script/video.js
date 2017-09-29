@@ -16,11 +16,26 @@ $(function() {
             that.time = new Date();
             that.selectTime = new Date();
 
+            that.resetTitle();
+
             // 以当前日期初始化日历
             that.calendarInit(that.time);
 
             var date = that.getDate(new Date());
             that.getVideoList(date.cy +'-'+ date.cm +'-'+ date.cd);
+        },
+
+        // 修改页面标题
+        resetTitle: function() {
+            var $body = $('body');
+            document.title = decodeURI(decodeURIComponent(that.getQueryString('studentName'))) + '的学习空间';
+             
+            var $iframe = $('<iframe src=""></iframe>');
+            $iframe.on('load',function() {
+              setTimeout(function() {
+                  $iframe.off('load').remove();
+              }, 0);
+            }).appendTo($body);
         },
 
         // 初始化日历

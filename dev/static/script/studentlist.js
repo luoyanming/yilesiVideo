@@ -25,7 +25,7 @@ $(function() {
 
                         for(var i = 0; i < list.length; i++) {
                             temp += '<article class="list-item">';
-                            temp += '<a href="./video.html?studentId='+ list[i].id +'" class="flex-h">';
+                            temp += '<a href="./video.html?studentId='+ list[i].id +'&studentName='+ encodeURI(encodeURIComponent(list[i].name)) +'" class="flex-h">';
                             temp += '<div class="name flex-a-i">'+ list[i].name +'</div>';
                             temp += '<div class="arrow"></div>';
                             temp += '</a>';
