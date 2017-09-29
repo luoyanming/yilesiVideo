@@ -1,7 +1,8 @@
 window.CONFIG = {
-    // 'api': 'http://ylsvideo.yls.com/privateapi',
+    // 'api': 'http://video.yls.com/privateapi',
+    // 'bind_redirect_url': 'http://video.yls.com/parent/bind',
+    // 'courseRecord_redirect_url': 'http://video.yls.com/parent/courseRecord'
     'api': 'http://cm.yilesi.cn',
-    // 'redirect_url': 'http://ylsvideo.yls.com/privateapi/parent/preIndex',
     'bind_redirect_url': 'http://cm.yilesi.cn/parent/bind',
     'courseRecord_redirect_url': 'http://cm.yilesi.cn/parent/courseRecord'
 }

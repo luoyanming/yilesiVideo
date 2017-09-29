@@ -198,6 +198,11 @@ $(function() {
                 success:function(res) {
                     if(res.code == 0) {
                         // succ
+
+                        if(res.data.showClock) {
+                            videoList.html('<div class="timeclock">今日课程将在18:00准时放送！</div>');
+                            return false;
+                        }
                         
                         if(!res.data.list) {
                             videoList.html('<div class="nodata">目前没有课程记录！</div>');
@@ -209,14 +214,14 @@ $(function() {
 
                         for(var i = 0; i < list.length; i++) {
                             temp += '<article class="list-item">';
-                            temp += '<a href="./player.html?path='+ list[i].videoPath +'&thumb='+ list[i].thumbnailUrl +'" class="flex-h">';
+                            temp += '<a href="./player.html?studentId='+ that.getQueryString('studentId') +'&recordId='+ list[i].recordId +'" class="flex-h">';
                             temp += '<div class="thumb">';
                             temp += '<img src="'+ list[i].thumbnailUrl +'">';
                             temp += '</div>';
                             temp += '<div class="info flex-a-i">';
                             temp += '<p class="name">'+ list[i].courseName +'</p>';
                             temp += '<p class="desc">';
-                            temp += '<span class="time">'+ list[i].videoLength +'</span>';
+                            // temp += '<span class="time">'+ list[i].videoLength +'</span>';
                             temp += '<span class="class">'+ list[i].teacherName +'</span>';
                             temp += '</p>';
                             temp += '</div>';

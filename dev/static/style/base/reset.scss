@@ -151,7 +151,7 @@ img{
 
 // ==================================================
 html{
-	font-size: 20px;
+	font-size: 20px !important;
     font-family: $fontFamily;
 }
 
@@ -161,5 +161,6 @@ body,
     height: 100%;
     background: rgba(239, 239, 244, 1);
     overflow: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
