@@ -1,32 +1,16 @@
-function formatDate() {
-    var formatdate = new Date(),
-        year = formatdate.getFullYear(),
-        month = formatdate.getMonth(),
-        day = formatdate.getDate(),
-        hour = formatdate.getHours(),
-        minute = formatdate.getMinutes(),
-        second = formatdate.getSeconds();
-
-    month = (month + 1) < 10 ? ('0' + (month + 1)) : (month + 1);
-    day = day < 10 ? ('0' + day) : day;
-    hour = hour < 10 ? ('0' + hour) : hour;
-    minute = minute < 10 ? ('0' + minute) : minute;
-    second = second < 10 ? ('0' + second) : second;
-
-    return year +''+ month +''+ day +'.'+ hour +''+ minute +''+ second;
-}
-
-var dest = 'dist';
-
-var gulp = require('gulp'),
+var dest = 'dist',
+    gulp = require('gulp'),
     sass = require('gulp-sass'),
-	cleancss = require('gulp-clean-css'),
+    cleancss = require('gulp-clean-css'),
     notify = require('gulp-notify'),
     header = require('gulp-header'),
     plumber = require('gulp-plumber'),
-	uglify = require('gulp-uglify'),
+    uglify = require('gulp-uglify'),
     livereload = require('gulp-livereload'),
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    concat = require('gulp-concat'),
+    rev = require('gulp-rev'),
+    revCollector = require('gulp-rev-collector');
 
 var pkg = require('./package.json'),
     notes = ['/**',
@@ -44,31 +28,36 @@ gulp.task('sass', function() {
             .pipe(sass())
             .pipe(cleancss())
             .pipe(header(notes, { pkg : pkg } ))
+            .pipe(rev())
             .pipe(gulp.dest(dest))
+            .pipe(rev.manifest())
+            .pipe(gulp.dest('./rev/css'))
             .pipe(livereload());
 });
 
 gulp.task('css', function(){
-	return gulp.src('dev/**/*.css')
+    return gulp.src('dev/**/*.css')
             .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
-			.pipe(cleancss())
-			.pipe(gulp.dest(dest))
+            .pipe(gulp.dest(dest))
             .pipe(livereload());
 });
 
 gulp.task('uglifyjs', function() {
-	return gulp.src(['dev/**/*.js','!dev/**/*.min.js'])
+    return gulp.src(['dev/**/*.js','!dev/**/*.min.js'])
             .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
-			.pipe(uglify())
+            .pipe(uglify())
             .pipe(header(notes, { pkg : pkg } ))
-			.pipe(gulp.dest(dest))
+            .pipe(rev())
+            .pipe(gulp.dest(dest))
+            .pipe(rev.manifest())
+            .pipe(gulp.dest('./rev/js'))
             .pipe(livereload());
 });
 
 gulp.task('minjs', function(){
-	return gulp.src('dev/**/*.min.js')
+    return gulp.src('dev/**/*.min.js')
             .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
-			.pipe(gulp.dest(dest))
+            .pipe(gulp.dest(dest))
             .pipe(livereload());
 });
 
@@ -78,14 +67,17 @@ gulp.task('images', function(){
             .pipe(livereload());
 });
 
-gulp.task('html', function(){
-    return gulp.src('dev/**/*.html')
+gulp.task('rev', function() {
+    return gulp.src(['rev/**/*.json', 'dev/**/*.html'])
+            .pipe(revCollector())
             .pipe(gulp.dest(dest))
             .pipe(livereload());
+
 });
 
 gulp.task('change', function() {
     gulp.src([
+        'rev/**/*.json',
         'dev/**/*.html',
         'dev/**/*.scss',
         'dev/**/*.css',
@@ -98,7 +90,7 @@ gulp.task('change', function() {
 gulp.task('webserver', function() {
     connect.server({
         host: '',
-        port: 9999,
+        port: 9002,
         root: './' + dest,
         livereload: true
     });
@@ -110,8 +102,9 @@ gulp.task('watch', function() {
     gulp.watch(['dev/**/*.js', '!dev/**/*.min.js'], ['uglifyjs']);
     gulp.watch('dev/**/*.min.js', ['minjs']);
     gulp.watch('dev/**/*.{png,jpg,gif,svg,ico}', ['images']);
-    gulp.watch('dev/**/*.html', ['html']);
+    gulp.watch(['rev/**/*.json', 'dev/**/*.html'], ['rev']);
     gulp.watch([
+        'rev/**/*.json',
         'dev/**/*.html',
         'dev/**/*.scss',
         'dev/**/*.{png,jpg,gif,svg,ico}',
@@ -119,4 +112,4 @@ gulp.task('watch', function() {
         ], ['change']);
 });
 
-gulp.task('server', ['sass', 'css', 'uglifyjs', 'minjs', 'images', 'html', 'webserver', 'watch']);
+gulp.task('server', ['sass', 'css', 'uglifyjs', 'minjs', 'images', 'rev', 'webserver', 'watch']);

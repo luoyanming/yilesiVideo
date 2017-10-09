@@ -219,7 +219,7 @@ $(function() {
                             return false;
                         }
                         
-                        if(!res.data.list) {
+                        if(res.data.list.length == 0) {
                             videoList.html('<div class="nodata">目前没有课程记录！</div>');
                             return false;
                         }

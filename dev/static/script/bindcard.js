@@ -129,7 +129,7 @@ $(function() {
 
                             if(res.code == 0) {
                                 // succ
-                                location.href = './bindsucc.html?studentId=' + res.data.studentId;
+                                location.href = './bindsucc.html?studentId=' + res.data.studentId + '&studentName=' + encodeURI(encodeURIComponent(res.data.studentName));
                             } else if(res.code == 1001) {
                                 // donot login
                                 location.href = CONFIG.bind_redirect_url;

@@ -383,6 +383,8 @@
 
                 img{
                     @include position(absolute, 2, 0, 0, 0, 0);
+                    width: 100%;
+                    height: 100%;
                 }
             }
 
@@ -412,7 +414,7 @@
     .jw-icon-hd{
         display: none !important;
     }
-    .jw-icon-volume{
+    .jw-icon-cc{
         display: none !important;
     }
 }
