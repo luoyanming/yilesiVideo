@@ -43,7 +43,7 @@ gulp.task('css', function(){
 });
 
 gulp.task('uglifyjs', function() {
-    return gulp.src(['dev/**/*.js','!dev/**/*.min.js'])
+    return gulp.src(['dev/**/*.js','!dev/**/*.min.js','!dev/**/util.js'])
             .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
             .pipe(uglify())
             .pipe(header(notes, { pkg : pkg } ))
@@ -55,7 +55,7 @@ gulp.task('uglifyjs', function() {
 });
 
 gulp.task('minjs', function(){
-    return gulp.src('dev/**/*.min.js')
+    return gulp.src(['dev/**/*.min.js','dev/**/util.js'])
             .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
             .pipe(gulp.dest(dest))
             .pipe(livereload());
