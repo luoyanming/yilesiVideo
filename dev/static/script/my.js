@@ -21,7 +21,7 @@ $(function() {
                         $('.loading').remove();
                         $('#avatar').attr('src', res.data.memberInfo.avatar);
                         $('#mobile').html(res.data.memberInfo.mobile);
-                        $('#nickname').html(res.data.memberInfo.name);
+                        $('#nickname').html(res.data.memberInfo.name ? res.data.memberInfo.name : '未填写');
 
                         $('.my-info').show();
                         $('.button-logout').show();
@@ -63,6 +63,42 @@ $(function() {
                     });
                 }
             });
+
+
+            // 编辑持卡人信息
+            $('#editCardInfo').on('click', function() {
+                window.location.href = '/cardlist.html';
+                
+                // $.ajax({
+                //     url: CONFIG.api + '/parent/ajax/studentList',
+                //     dataType: 'json',
+                //     type: 'post',
+                //     data: {
+                        
+                //     },
+                //     success:function(res) {
+                //         if(res.code == 0) {
+                //             // succ
+
+                //             if(res.data.stuList.length > 1) {
+                //                 $('.button-link-default').attr('href', './cardlist.html');
+                //             } else {
+                //                 './editcard.html?studentName='+ encodeURI(encodeURIComponent(name)) +'&birthDay='+ birthDay +'&code='+ code
+                //             }
+                //         } else {
+                //             window.location.href = '/cardlist.html';
+                //         }
+                //     },
+                //     error: function() {
+                //         window.location.href = '/cardlist.html';
+                //     }
+                // });                            
+            });
+
+            // 解绑智慧卡
+            $('#unBindCard').on('click', function() {
+                window.location.href = '/unbindcard.html';
+            });            
         }
     };
 

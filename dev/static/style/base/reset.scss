@@ -130,6 +130,14 @@ img{
 
 
 
+
+// ==================================================
+html{
+    font-size: 20px !important;
+    font-family: $fontFamily;
+}
+
+
 // ==================================================
 @media only screen and (min-width: 400px) {
     html, body {
@@ -149,18 +157,5 @@ img{
 
 
 
-// ==================================================
-html{
-	font-size: 20px !important;
-    font-family: $fontFamily;
-}
 
-html,
-body,
-.app{
-    height: 100%;
-    background: rgba(239, 239, 244, 1);
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
-}
 

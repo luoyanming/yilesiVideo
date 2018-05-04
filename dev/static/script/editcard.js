@@ -4,11 +4,29 @@ $(function() {
         init: function() {
             that = this;
 
-            that.pickerInit();
+            that.getquery();
 
             that.handleClickBind();
         },
-        pickerInit: function() {
+
+        getQueryString: function(name){
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        },
+        getquery: function() {
+            var name = decodeURI(decodeURIComponent(that.getQueryString('studentName'))),
+                code = that.getQueryString('code'),
+                birthDay = that.getQueryString('birthDay');
+
+            console.log(name, code, birthDay)
+
+            $('#name').val(name);
+            $('#code').val(code);
+
+            that.pickerInit(birthDay);      
+        },
+        pickerInit: function(birthDay) {
             var pickerObj = $("#picker"),
                 yearArr = [],
                 monthArr = [],
@@ -20,7 +38,17 @@ $(function() {
                 currentDate = '01',
                 t;
 
-            pickerObj.val(currentYear +' '+ currentMonth +' '+ currentDate);
+            if(birthDay) {
+                var birthDay = birthDay.toString(),
+                    _y = birthDay.substring(0, 4),
+                    _m = birthDay.substring(4, 6),
+                    _d = birthDay.substring(6, 8);
+
+                pickerObj.val(_y +' '+ _m +' '+ _d);
+                $('#birthday').val(_y +'-'+ _m +'-'+ _d);
+            } else {          
+                pickerObj.val(currentYear +' '+ currentMonth +' '+ currentDate);
+            }
 
             for(var y = 0; y < yearEnd - yearStart + 1; y++) {
                 yearArr[y] = (yearStart + y).toString();
@@ -98,38 +126,31 @@ $(function() {
                         return false;
                     }
 
-                    var number = $('#number'),
-                        birthday = $('#birthday'),
-                        numberVal = number.val(),
+                    var birthday = $('#birthday'),
                         birthdayVal = birthday.val();
 
-                    if(!numberVal) {
-                        that.showMsg('请输入您孩子的教学卡卡号');
-                        return false;
-                    }
-
                     if(!birthdayVal) {
-                        that.showMsg('请选择您孩子的生日');
+                        that.showMsg('请选择持卡人生日');
                         return false;
                     }
 
-                    clicks.html('正在绑定...').addClass('disable');
+                    clicks.html('正在保存...').addClass('disable');
 
                     var birthdayArr = birthdayVal.split('-');
                     $.ajax({
-                        url: CONFIG.api + '/parent/ajax/doBind',
+                        url: CONFIG.api + '/parent/ajax/update/cardInfo',
                         dataType: 'json',
                         type: 'post',
                         data: {
-                            code: numberVal,
+                            code: $('#code').val(),
                             birthday: birthdayArr[0] + birthdayArr[1] + birthdayArr[2]
                         },
                         success:function(res) {
-                            clicks.html('确定').removeClass('disable');
+                            clicks.html('保存').removeClass('disable');
 
                             if(res.code == 0) {
                                 // succ
-                                location.href = './bindsucc.html?studentId=' + res.data.studentId + '&studentName=' + encodeURI(encodeURIComponent(res.data.studentName)) + '&code=' + numberVal + '&birthDay=' + birthdayArr[0] + birthdayArr[1] + birthdayArr[2];
+                                that.showMsg('保存成功!');
                             } else if(res.code == 1001) {
                                 // donot login
                                 location.href = CONFIG.bind_redirect_url;
@@ -139,7 +160,7 @@ $(function() {
                             }
                         },
                         error: function() {
-                            clicks.html('确定').removeClass('disable');
+                            clicks.html('保存').removeClass('disable');
                             that.showMsg('网络连接异常！请重试!');
                         }
                     });

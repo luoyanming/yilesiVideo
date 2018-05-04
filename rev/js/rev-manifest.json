@@ -1,9 +1,14 @@
 {
-  "static/script/bindcard.js": "static/script/bindcard-087ad3942b.js",
-  "static/script/bindsucc.js": "static/script/bindsucc-40e0a48a92.js",
-  "static/script/my.js": "static/script/my-4381a6676f.js",
+  "static/script/bindcard.js": "static/script/bindcard-c1b4b97b9c.js",
+  "static/script/bindsucc.js": "static/script/bindsucc-26efdba371.js",
+  "static/script/cardlist.js": "static/script/cardlist-26c0f6bfa2.js",
+  "static/script/editcard.js": "static/script/editcard-5c4191c581.js",
+  "static/script/list.js": "static/script/list-970bca8f75.js",
+  "static/script/listdetail.js": "static/script/listdetail-12f39892e9.js",
+  "static/script/my.js": "static/script/my-e8e87e3275.js",
   "static/script/player.js": "static/script/player-d06c93102e.js",
   "static/script/studentlist.js": "static/script/studentlist-976066567b.js",
+  "static/script/unbindcard.js": "static/script/unbindcard-fe8080ea92.js",
   "static/script/video.js": "static/script/video-33f01b2b0f.js",
   "static/script/zepto.min.b.js": "static/script/zepto-9692097019.min.b.js"
 }

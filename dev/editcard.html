@@ -8,36 +8,46 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>绑定智慧教学卡</title>
+    <title>持卡人信息</title>
     <link rel="stylesheet" href="./static/style/sm.min.css">
-    <link rel="stylesheet" href="./static/style/style-35ef98d14c.css">
+    <link rel="stylesheet" href="./static/style/style.css">
 </head>
 
 <body>
     
     <div class="app">
         
-        <div class="bindcard">
+        <div class="editcard">
             <section class="form">
                 <div class="block-content flex-h">
                     <div class="title-name">
-                        <label>卡号</label>
+                        <label>持卡人姓名</label>
                     </div>
                     <div class="text flex-a-i">
-                        <input type="text" name="number" placeholder="请输入您孩子的教学卡卡号" id="number">
+                        <input type="text" name="name" placeholder="持卡人姓名" id="name" disabled>
+                    </div>
+                </div>                
+                <div class="block-content flex-h">
+                    <div class="title-name">
+                        <label>智慧卡MAC号</label>
+                    </div>
+                    <div class="text flex-a-i">
+                        <input type="text" name="code" placeholder="请输入您孩子的教学卡卡号" id="code" disabled>
                     </div>
                 </div>
                 <div class="block-content flex-h">
                     <div class="title-name">
-                        <label>生日</label>
+                        <label>持卡人生日</label>
                     </div>
                     <div class="text flex-a-i">
-                        <input type="text" name="birthday" placeholder="请选择您孩子的生日" id="birthday">
+                        <input type="text" name="birthday" placeholder="请选择持卡人生日" id="birthday">
                         <input type="text" name="picker" class="input-picker" id="picker">
                     </div>
                 </div>
 
-                <a href="javascript: javascript:void(0);" class="button-submit">确定</a>
+                <p class="tips">持卡人生日修改后，其他亲属绑卡时需要按照新的持卡人生日进行绑卡。</p>
+
+                <a href="javascript: javascript:void(0);" class="button-submit">保存</a>
             </section>
         </div>
 
@@ -60,6 +70,6 @@
     <script src='./static/script/zepto.min.js'></script>
     <script src='./static/script/sm.min.js'></script>
     <script src='./static/script/util.js'></script>
-    <script src='./static/script/bindcard-c1b4b97b9c.js'></script>
+    <script src='./static/script/editcard.js'></script>
 </body>
 </html>
