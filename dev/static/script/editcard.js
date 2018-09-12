@@ -181,6 +181,7 @@ $(function() {
             msgButton.unbind('click');
             msgButton.on('click', function() {
                 msgMask.fadeOut(200);
+                location.href = './cardlist.html';
             });
         },
         monthUI: function() {

@@ -67,7 +67,7 @@ $(function() {
 
             // 编辑持卡人信息
             $('#editCardInfo').on('click', function() {
-                window.location.href = '/cardlist.html';
+                window.location.href = './cardlist.html';
                 
                 // $.ajax({
                 //     url: CONFIG.api + '/parent/ajax/studentList',
@@ -97,7 +97,7 @@ $(function() {
 
             // 解绑智慧卡
             $('#unBindCard').on('click', function() {
-                window.location.href = '/unbindcard.html';
+                window.location.href = './unbindcard.html';
             });            
         }
     };
