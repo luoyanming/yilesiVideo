@@ -1,7 +1,0 @@
-/**
- * @author luoym
- * @email 13575458746@163.com
- * @descrip 
- * @version v1.0.0
- */
-$(function(){var n;({init:function(){n=this,n.getMemberInfo(),n.handleBind()},getMemberInfo:function(){$.ajax({url:CONFIG.api+"/parent/ajax/memberInfo",dataType:"json",type:"post",data:{},success:function(n){0==n.code?($(".loading").remove(),$("#avatar").attr("src",n.data.memberInfo.avatar),$("#mobile").html(n.data.memberInfo.mobile),$("#nickname").html(n.data.memberInfo.name?n.data.memberInfo.name:"未填写"),$(".my-info").show(),$(".button-logout").show()):1001==n.code?location.href=CONFIG.courseRecord_redirect_url:$(".loading").html('<div class="loading">'+n.errorInfo+"</div>")},error:function(){$(".loading").html('<div class="loading">数据加载失败</div>')}})},handleBind:function(){$(".button-logout").on("click",function(){1==confirm("确定退出登录？")&&$.ajax({url:CONFIG.api+"/parent/ajax/logout",dataType:"json",type:"post",data:{},success:function(n){0==n.code?location.href=n.data.url:alert(n.errorInfo)},error:function(){alert("退出登录失败！请重试！")}})}),$("#editCardInfo").on("click",function(){window.location.href="/cardlist.html"}),$("#unBindCard").on("click",function(){window.location.href="/unbindcard.html"})}}).init()});
